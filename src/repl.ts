@@ -1,5 +1,3 @@
-import { createInterface } from "node:readline";
-import { getCommands } from "./commands.js";
 import { State } from "./state.js";
 
 export function cleanInput(input: string): string[] {
@@ -12,7 +10,7 @@ export function cleanInput(input: string): string[] {
     return cleanedArr;
 }
 
-export function startREPL(state: State): void {
+export async function startREPL(state: State) {
     const rl = state.readline
     rl.prompt();
     rl.on("line", async (input) => {
@@ -22,7 +20,7 @@ export function startREPL(state: State): void {
             return;
         } else if (cleanedInput[0] in state.commands) {
             const command = state.commands[cleanedInput[0]];
-            command.callback(state);
+            await command.callback(state);
             rl.prompt();
         } else {
             console.log( `Unknown command: "${cleanedInput[0]}". Type "help" for a list of commands.`);
