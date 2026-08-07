@@ -2,19 +2,6 @@
 > pokedex-ts@1.0.0 dev
 > npx tsc && node dist/main.js
 
-Pokedex > Exploring pastoria-city-area...
-Found Pokemon:
- - tentacool
- - tentacruel
- - magikarp
- - gyarados
- - remoraid
- - octillery
- - wingull
- - pelipper
- - shellos
- - gastrodon
-Pokedex > Pokedex > Unknown command: "". Type "help" for a list of commands.
-Pokedex > Enter a location name: Enter a location name: Exploring ...
-Found Pokemon:
-Pokedex > Closing the Pokedex... Goodbye!
+Pokedex > Throwing a Pokeball at squirtle...
+squirtle escaped!
+Pokedex > Pokedex > Closing the Pokedex... Goodbye!

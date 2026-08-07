@@ -7,6 +7,29 @@ export class PokeAPI {
     this.#cache = new Cache(cacheInterval);
   }
 
+  async fetchPokemon(pokemonName: string): Promise<any> {
+    const url = `${PokeAPI.baseURL}/pokemon/${pokemonName}`;
+    const cachedPokemon = this.#cache.get<any>(url);
+    if (cachedPokemon) {
+        return cachedPokemon;
+    }
+    try {
+      const resp = await fetch(url);
+
+      if (!resp.ok) {
+        throw new Error(`${resp.status} ${resp.statusText}`);
+      }
+
+      const pokemonData = await resp.json();
+      this.#cache.add(url, pokemonData);
+      return pokemonData;
+    } catch (e) {
+      throw new Error(
+        `Error fetching pokemon '${pokemonName}': ${(e as Error).message}`,
+      );
+    }
+  }
+
   async fetchLocations(pageURL?: string): Promise<ShallowLocations> {
     const url = pageURL || `${PokeAPI.baseURL}/location-area`;
     const cachedLocals = this.#cache.get<ShallowLocations>(url);
