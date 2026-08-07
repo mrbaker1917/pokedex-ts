@@ -20,7 +20,7 @@ export async function startREPL(state: State) {
             return;
         } else if (cleanedInput[0] in state.commands) {
             const command = state.commands[cleanedInput[0]];
-            await command.callback(state);
+            await command.callback(state, ...cleanedInput.slice(1));
             rl.prompt();
         } else {
             console.log( `Unknown command: "${cleanedInput[0]}". Type "help" for a list of commands.`);
