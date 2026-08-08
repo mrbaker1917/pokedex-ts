@@ -21,6 +21,7 @@ async function fetchPokemonData(state: State, pokemonName: string) {
             console.log(`${pokemonData.name} escaped!`);
         } else {
             console.log(`${pokemonData.name} was caught!`);
+            console.log(`You may now inspect it with the inspect command.`)
             state.pokedex[pokemonData.name] = pokemonData;
         }
     } catch (error) {
